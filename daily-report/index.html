@@ -3,24 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日简报</title>
+    <title>每日简报 | Daily Report</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
-        h1 { color: #333; }
-        .update-time { color: #666; font-size: 14px; }
-        .topics { margin-top: 30px; }
-        .topic { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .logo {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d9ff, #a855f7, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .topics-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, #00d9ff, #a855f7);
+            border-radius: 2px;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .topic-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .topic-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .topic-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .topic-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .status {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            border: 1px dashed rgba(255,255,255,0.2);
+        }
+        
+        .status-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            opacity: 0.6;
+        }
+        
+        .status-text {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+        
+        footer a {
+            color: #00d9ff;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 28px; }
+            .container { padding: 40px 15px; }
+            .topic-card { padding: 20px; }
+        }
     </style>
 </head>
 <body>
-    <h1>📰 每日简报</h1>
-    <p class="update-time">每天自动更新</p>
-    <div class="topics">
-        <h2>关注主题</h2>
-        <div class="topic">🎮 游戏</div>
-        <div class="topic">🤖 AI科技</div>
-        <div class="topic">📈 股票</div>
+    <div class="container">
+        <header>
+            <div class="logo">📰</div>
+            <h1>每日简报</h1>
+            <p class="subtitle">DAILY REPORT</p>
+            <div class="time-badge">
+                🕐 每天北京时间 08:00 自动更新
+            </div>
+        </header>
+        
+        <section class="topics-section">
+            <h2 class="section-title">关注主题</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">🎮</div>
+                    <div class="topic-name">游戏</div>
+                    <div class="topic-desc">游戏行业动态、新品发布</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🤖</div>
+                    <div class="topic-name">AI 科技</div>
+                    <div class="topic-desc">人工智能、前沿科技</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">📈</div>
+                    <div class="topic-name">股票</div>
+                    <div class="topic-desc">股市行情、投资资讯</div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="status">
+            <div class="status-icon">⚙️</div>
+            <p class="status-text">内容正在自动抓取生成中...<br>稍后将有更多精彩内容呈现</p>
+        </div>
+        
+        <footer>
+            <p>Powered by <a href="https://github.com/huijiccc/daily-report">GitHub Actions</a></p>
+        </footer>
     </div>
-    <p style="margin-top: 30px; color: #999;">内容将由脚本自动抓取生成...</p>
 </body>
 </html>
