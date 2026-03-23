@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "skills": {
+    "elite-longterm-memory": {
+      "version": "1.2.3",
+      "installedAt": 1774260965554
+    },
+    "voice-wake-say": {
+      "version": "1.0.1",
+      "installedAt": 1774261024722
+    },
+    "self-learning": {
+      "version": "3.0.1",
+      "installedAt": 1774261047154
+    },
+    "core": {
+      "version": "3.0.0",
+      "installedAt": 1774261085030
+    },
+    "code": {
+      "version": "1.0.4",
+      "installedAt": 1774261145993
+    },
+    "proactive-agent-lite": {
+      "version": "1.0.0",
+      "installedAt": 1774261204938
+    },
+    "agent-wake": {
+      "version": "1.0.1",
+      "installedAt": 1774271825724
+    },
+    "openclaw-tavily-search": {
+      "version": "0.1.0",
+      "installedAt": 1774289345492
+    },
+    "summarize": {
+      "version": "1.0.0",
+      "installedAt": 1774289349924
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1774289361177
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1774289365337
+    },
+    "obsidian": {
+      "version": "1.0.0",
+      "installedAt": 1774289405002
+    },
+    "weather": {
+      "version": "1.0.0",
+      "installedAt": 1774289409782
+    },
+    "tencentcloud-lighthouse-skill": {
+      "version": "1.0.0",
+      "installedAt": 1774289465413
+    },
+    "tencent-docs": {
+      "version": "1.0.19",
+      "installedAt": 1774289538826
+    },
+    "tencent-cos-skill": {
+      "version": "1.0.6",
+      "installedAt": 1774289543690
+    },
+    "Summarize": {
+      "version": "1.0.0",
+      "installedAt": 1774289649750
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1774289655136
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1774289705763
+    },
+    "self-improving": {
+      "version": "1.2.16",
+      "installedAt": 1774289710733
+    },
+    "auto-updater": {
+      "version": "1.0.0",
+      "installedAt": 1774289892030
+    },
+    "self-improving-agent": {
+      "version": "3.0.5",
+      "installedAt": 1774295345559
+    }
+  }
+}

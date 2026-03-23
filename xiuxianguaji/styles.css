@@ -1,0 +1,218 @@
+/* ========================================
+   文字修仙挂机游戏 - 样式表
+   采用复古终端/MUD游戏风格设计
+   ======================================== */
+
+/* 引入VT323像素字体，营造复古终端效果 */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* 全局重置样式 */
+* {
+    margin: 0;      /* 清除默认外边距 */
+    padding: 0;     /* 清除默认内边距 */
+    box-sizing: border-box;  /* 使用边框盒模型，宽高包含padding和border */
+}
+
+/* 页面主体样式 */
+body {
+    font-family: 'VT323', 'Courier New', monospace;  /* 优先使用VT323像素字体，备选等宽字体 */
+    background: #0a0a0a;    /* 深黑色背景，模拟终端屏幕 */
+    min-height: 100vh;      /* 最小高度为视口高度 */
+    color: #ffffff;         /* 白色文字 */
+    overflow: hidden;       /* 隐藏页面滚动条 */
+}
+
+/* CRT扫描线效果 - 模拟老式显示器 */
+body::before {
+    content: '';            /* 伪元素必须有content属性 */
+    position: fixed;        /* 固定定位，不随页面滚动 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 创建水平扫描线效果 */
+    background: repeating-linear-gradient(
+        0deg,                          /* 从上到下的渐变方向 */
+        rgba(0, 0, 0, 0.15),          /* 深色扫描线 */
+        rgba(0, 0, 0, 0.15) 1px,      /* 扫描线宽度1像素 */
+        transparent 1px,               /* 透明间隔 */
+        transparent 2px                /* 间隔宽度1像素 */
+    );
+    pointer-events: none;   /* 不响应鼠标事件，让点击穿透 */
+    z-index: 1000;          /* 最高层级，覆盖所有内容 */
+}
+
+/* 主终端容器 */
+.terminal {
+    width: 100%;
+    height: 100vh;          /* 占满整个视口高度 */
+    padding: 0 10px;        /* 左右保留10px边距，上下无边距 */
+    display: flex;
+    flex-direction: column; /* 垂直方向排列子元素 */
+    /* 径向渐变背景，中心稍亮，边缘更暗 */
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+/* 页面头部区域 */
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* 头部标题样式 */
+.header .title {
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    /* 文字发光效果，模拟霓虹灯 */
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
+    letter-spacing: 2px;    /* 字母间距，增加复古感 */
+}
+
+/* 主内容区域 - 包含所有标签页内容 */
+.main-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* 标签页内容容器 - 默认隐藏 */
+.tab-content {
+    display: none;
+    height: 100%;
+    min-height: 0;
+}
+
+/* 激活状态的标签页 - 显示内容 */
+.tab-content.active {
+    display: block;
+}
+
+/* 面板标题样式 */
+.panel-title {
+    color: #ffffff;
+    font-size: 19px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #ffffff;  /* 轻微发光效果 */
+}
+
+/* 内容盒子 - 显示具体内容的容器 */
+.content-box {
+    height: 100%;
+    background: rgba(20, 20, 20, 0.8);  /* 半透明深色背景 */
+    border: 1px solid #666666;     /* 灰色边框 */
+    padding: 10px;
+    /* 外发光和内阴影，增加立体感 */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1), 
+                inset 0 0 20px rgba(255, 255, 255, 0.02);
+    overflow-y: auto;              /* 垂直方向可滚动 */
+    /* Firefox滚动条样式 */
+    scrollbar-width: thin;         /* 细滚动条 */
+    scrollbar-color: #666666 #0a0a0a;  /* 滑块和轨道颜色 */
+}
+
+/* Webkit浏览器滚动条样式 - Chrome/Safari/Edge */
+.content-box::-webkit-scrollbar {
+    width: 8px;                    /* 滚动条宽度 */
+}
+
+/* 滚动条轨道 */
+.content-box::-webkit-scrollbar-track {
+    background: #0a0a0a;           /* 轨道背景色 */
+}
+
+/* 滚动条滑块 */
+.content-box::-webkit-scrollbar-thumb {
+    background: #666666;           /* 滑块颜色 */
+    border-radius: 4px;            /* 圆角 */
+}
+
+/* 文本行样式 - 游戏中每一行文字 */
+.text-line {
+    font-size: 19px;
+    line-height: 1.5;              /* 行高1.5倍 */
+    white-space: pre;              /* 保留空白和换行，对ASCII艺术很重要 */
+    color: #cccccc;                /* 浅灰色文字 */
+    overflow-x: hidden;            /* 隐藏水平溢出 */
+    max-width: 100%;
+}
+
+/* 底部标签栏 - 用于切换功能页面 */
+.tab-bar {
+    display: flex;
+    flex-wrap: wrap;               /* 允许换行，适应小屏幕 */
+    gap: 5px;                      /* 标签之间的间距 */
+    padding: 5px;
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid #666666;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* 单个标签样式 */
+.tab {
+    flex: 1 1 calc(25% - 5px);     /* 弹性布局，每行最多4个 */
+    text-align: center;
+    padding: 8px 5px;
+    color: #888888;                /* 未选中时灰色 */
+    cursor: pointer;               /* 鼠标指针 */
+    border: 1px solid transparent; /* 透明边框，hover时显示 */
+    transition: all 0.2s ease;     /* 平滑过渡动画 */
+    font-size: 19px;
+}
+
+/* 标签悬停效果 */
+.tab:hover {
+    color: #ffffff;                /* 白色文字 */
+    background: rgba(255, 255, 255, 0.1);  /* 半透明白色背景 */
+    border-color: #555555;         /* 显示边框 */
+}
+
+/* 激活状态的标签 */
+.tab.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);  /* 更亮的背景 */
+    border-color: #ffffff;         /* 白色边框 */
+    text-shadow: 0 0 5px #ffffff;  /* 发光效果 */
+}
+
+/* 响应式设计 - 小屏幕适配 */
+@media (max-width: 480px) {
+    /* 终端容器 */
+    .terminal {
+        padding: 5px;              /* 减小内边距 */
+    }
+    
+    /* 文本行 */
+    .text-line {
+        font-size: 17px;           /* 减小字体 */
+        line-height: 1.4;          /* 减小行高 */
+    }
+    
+    /* 标签栏 */
+    .tab-bar {
+        gap: 3px;                  /* 减小间距 */
+        padding: 3px;
+    }
+    
+    /* 标签 */
+    .tab {
+        padding: 6px 3px;          /* 减小内边距 */
+        font-size: 17px;           /* 减小字体 */
+    }
+    
+    /* 内容盒子 */
+    .content-box {
+        padding: 5px;              /* 减小内边距 */
+    }
+    
+    /* 面板标题 */
+    .panel-title {
+        font-size: 17px;           /* 减小字体 */
+    }
+}
+
+/* 文字选中效果 */
+::selection {
+    background: #ffffff;           /* 选中背景白色 */
+    color: #000000;                /* 选中文字黑色 */
+}

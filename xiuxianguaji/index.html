@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!-- 文字修仙挂机游戏 - MUD风格界面 -->
+<html lang="zh-CN">
+<head>
+    <!-- 字符编码设置 -->
+    <meta charset="UTF-8">
+    <!-- 移动端视口设置，确保在手机上正确显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!-- 页面标题 -->
+    <title>文字修仙 - MUD</title>
+    <!-- 引入样式表 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 主容器：终端风格的界面布局 -->
+    <div class="terminal">
+        <!-- 主内容区域：包含各个标签页的内容 -->
+        <div class="main-content">
+            <!-- 角色属性标签页 -->
+            <div class="tab-content" id="tab-status">
+                <!-- 属性内容容器，由JavaScript动态更新 -->
+                <div class="content-box" id="status-content">
+                    <!-- 基础属性框 -->
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 角色姓名和等级显示 -->
+                    <div class="text-line">│ 姓名: 冒险者    等级: 一层 │</div>
+                    <!-- 生命值显示 -->
+                    <div class="text-line">│ 生命: 100/100              │</div>
+                    <!-- 攻击、防御、攻速属性 -->
+                    <div class="text-line">│ 攻击: 10    防御: 5   攻速: 10 │</div>
+                    <!-- 暴击率和暴击伤害 -->
+                    <div class="text-line">│ 暴击: 5%    暴伤: 150%        │</div>
+                    <div class="text-line">└────────────────────┘</div>
+                    <div class="text-line"></div>
+                    <!-- 详细属性区域 -->
+                    <div class="text-line">【 详细属性 】</div>
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 详细属性内容占位，由JavaScript动态填充 -->
+                    <div class="text-line">│                      │</div>
+                    <div class="text-line">│                      │</div>
+                    <div class="text-line">│                      │</div>
+                    <div class="text-line">│                      │</div>
+                    <div class="text-line">└────────────────────┘</div>
+                </div>
+            </div>
+            
+            <!-- 战斗区域标签页 -->
+            <div class="tab-content" id="tab-battle">
+                <!-- 战斗内容容器，显示战斗过程和结果 -->
+                <div class="content-box" id="battle-content">
+                    <div class="text-line">┌────────────────────┐</div>
+                    <div class="text-line">│                      │</div>
+                    <!-- 战斗状态提示 -->
+                    <div class="text-line">│    战斗准备就绪     │</div>
+                    <div class="text-line">│                      │</div>
+                    <!-- 操作提示 -->
+                    <div class="text-line">│  点击开始战斗...   │</div>
+                    <div class="text-line">│                      │</div>
+                    <div class="text-line">└────────────────────┘</div>
+                </div>
+            </div>
+            
+            <!-- 洞府系统标签页 - 用于放置和升级设施 -->
+            <div class="tab-content" id="tab-equipment">
+                <!-- 洞府内容容器，由JavaScript动态生成 -->
+                <div class="content-box" id="equipment-content">
+                </div>
+            </div>
+            
+            <!-- 法则系统标签页 - 技能和法则修炼 -->
+            <div class="tab-content" id="tab-skill">
+                <!-- 法则内容容器，由JavaScript动态生成 -->
+                <div class="content-box" id="skill-content">
+                </div>
+            </div>
+            
+            <!-- 修炼系统标签页 - 核心挂机修炼功能 -->
+            <div class="tab-content active" id="tab-cultivate">
+                <!-- 修炼内容容器，由JavaScript动态生成 -->
+                <div class="content-box" id="cultivate-content">
+                </div>
+            </div>
+            
+            <!-- 炼丹系统标签页 - 炼制丹药 -->
+            <div class="tab-content" id="tab-alchemy">
+                <!-- 炼丹内容容器，由JavaScript动态生成 -->
+                <div class="content-box" id="alchemy-content">
+                </div>
+            </div>
+            
+            <!-- 法宝系统标签页 - 装备和管理法宝 -->
+            <div class="tab-content" id="tab-treasure">
+                <div class="content-box">
+                    <!-- 法宝槽位信息 -->
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 当前法宝数量和属性加成 -->
+                    <div class="text-line">│ 法宝槽位: 0/5      │</div>
+                    <div class="text-line">│ 攻击+0% 防御+0%   │</div>
+                    <div class="text-line">└────────────────────┘</div>
+                    <div class="text-line"></div>
+                    <!-- 已装备法宝列表 -->
+                    <div class="text-line">【 已装备 】</div>
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 5个法宝槽位，初始为空 -->
+                    <div class="text-line">│ (空)               │</div>
+                    <div class="text-line">│ (空)               │</div>
+                    <div class="text-line">│ (空)               │</div>
+                    <div class="text-line">│ (空)               │</div>
+                    <div class="text-line">│ (空)               │</div>
+                    <div class="text-line">└────────────────────┘</div>
+                </div>
+            </div>
+            
+            <!-- 纳戒系统标签页 - 背包物品管理 -->
+            <div class="tab-content" id="tab-bag">
+                <!-- 背包内容容器，由JavaScript动态生成 -->
+                <div class="content-box" id="bag-content">
+                </div>
+            </div>
+            
+            <!-- 存档系统标签页 - 游戏存档管理 -->
+            <div class="tab-content" id="tab-save">
+                <div class="content-box" id="save-content">
+                    <!-- 存档状态信息 -->
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 自动存档开关状态 -->
+                    <div class="text-line">自动存档: 开启</div>
+                    <div class="text-line">└────────────────────┘</div>
+                    <div class="text-line"></div>
+                    <!-- 存档操作按钮区域 -->
+                    <div class="text-line">【 存档操作 】</div>
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 导出存档按钮：将存档导出为Base64编码 -->
+                    <div class="text-line"><button onclick="exportSaveData()" style="background:#333;color:#fff;border:1px solid #666;padding:4px 16px;cursor:pointer;font-size:14px;">导出存档</button></div>
+                    <div class="text-line">    </div>
+                    <!-- 导入存档按钮：从剪贴板导入存档 -->
+                    <div class="text-line"><button onclick="importSaveData()" style="background:#333;color:#fff;border:1px solid #666;padding:4px 16px;cursor:pointer;font-size:14px;">导入存档</button></div>
+                    <!-- 重置游戏按钮（已注释禁用） -->
+                    <div class="text-line"><!-- <button onclick="clearSaveData()" style="background:#333;color:#fff;border:1px solid #666;padding:4px 16px;cursor:pointer;font-size:14px;">重置游戏</button> --></div>
+                    <div class="text-line">└────────────────────┘</div>
+                    <div class="text-line"></div>
+                    <!-- 作弊模块（默认隐藏） -->
+                    <div class="text-line" id="cheat-module" style="display:none;">
+                    <div class="text-line">【 作弊模块 】</div>
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 离线时长倍率调整 -->
+                    <div class="text-line">离线时长: <span id="cheat-offline">1</span>x <button onclick="changeOfflineMultiplier()" style="background:#333;color:#fff;border:1px solid #666;padding:1px 6px;cursor:pointer;font-size:12px;">改</button></div>
+                    <div class="text-line">└────────────────────┘</div>
+                    </div>
+                    <div class="text-line"></div>
+                    <!-- 导出/导入说明 -->
+                    <div class="text-line">【 导出/导入说明 】</div>
+                    <div class="text-line">┌────────────────────┐</div>
+                    <div class="text-line">存档使用Base64编码</div>                   
+                    <div class="text-line">导出: 复制存档码到剪贴板</div>
+                    <div class="text-line">导入: 粘贴存档码到输入框</div>
+                    <div class="text-line">└────────────────────┘</div>
+                    <div class="text-line"></div>
+                    <!-- 游戏说明按钮 -->
+                    <div class="text-line">【 游戏说明 】</div>
+                    <div class="text-line">┌────────────────────┐</div>
+                    <!-- 查看游戏说明按钮 -->
+                    <div class="text-line"><button onclick="showGameGuide()" style="background:#333;color:#fff;border:1px solid #666;padding:4px 16px;cursor:pointer;font-size:14px;">查看游戏说明</button></div>
+                    <div class="text-line">└────────────────────┘</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部标签栏：用于切换不同的功能页面 -->
+        <div class="tab-bar">
+            <!-- 修炼标签：默认激活状态 -->
+            <div class="tab active" data-tab="cultivate">修炼</div>
+            <!-- 战斗标签 -->
+            <div class="tab" data-tab="battle">战斗</div>
+            <!-- 洞府标签 -->
+            <div class="tab" data-tab="equipment">洞府</div>
+            <!-- 法则标签 -->
+            <div class="tab" data-tab="skill">法则</div>
+            <!-- 炼丹标签 -->
+            <div class="tab" data-tab="alchemy">炼丹</div>
+            <!-- 法宝标签 -->
+            <div class="tab" data-tab="treasure">法宝</div>
+            <!-- 纳戒（背包）标签 -->
+            <div class="tab" data-tab="bag">纳戒</div>
+            <!-- 存档标签 -->
+            <div class="tab" data-tab="save">存档</div>
+        </div>
+    </div>
+    <!-- 引入 math.js 高精度数学库 -->
+    <script src="math.js"></script>
+    <!-- math.js 全局高精度配置 -->
+    <script>
+        // 关键：先保存原生 Math 对象，避免循环引用
+        const _nativeMath = {
+            abs: Math.abs, ceil: Math.ceil, floor: Math.floor, round: Math.round,
+            pow: Math.pow, sqrt: Math.sqrt, cbrt: Math.cbrt,
+            log: Math.log, log10: Math.log10, log2: Math.log2, exp: Math.exp,
+            sin: Math.sin, cos: Math.cos, tan: Math.tan,
+            asin: Math.asin, acos: Math.acos, atan: Math.atan, atan2: Math.atan2,
+            sinh: Math.sinh, cosh: Math.cosh, tanh: Math.tanh,
+            max: Math.max, min: Math.min, sign: Math.sign, trunc: Math.trunc,
+            random: Math.random,
+            PI: Math.PI, E: Math.E, LN2: Math.LN2, LN10: Math.LN10,
+            LOG2E: Math.LOG2E, LOG10E: Math.LOG10E, SQRT1_2: Math.SQRT1_2, SQRT2: Math.SQRT2
+        };
+        window._nativeMath = _nativeMath;
+        
+        // 创建高精度数学环境
+        const preciseMath = math.create({
+            number: 'BigNumber',
+            precision: 16,
+            epsilon: 1e-16
+        });
+        
+        // 辅助函数：在调用 preciseMath 时临时恢复原生 Math
+        function withNativeMath(fn) {
+            const saved = window.Math;
+            window.Math = _nativeMath;
+            try {
+                return fn();
+            } finally {
+                window.Math = saved;
+            }
+        }
+        
+        // 创建兼容原生 Math 的包装对象
+        const highPrecisionMath = {
+            abs: (x) => withNativeMath(() => Number(preciseMath.abs(x))),
+            ceil: (x) => withNativeMath(() => Number(preciseMath.ceil(x))),
+            floor: (x) => withNativeMath(() => Number(preciseMath.floor(x))),
+            round: (x) => withNativeMath(() => Number(preciseMath.round(x))),
+            pow: (base, exp) => withNativeMath(() => Number(preciseMath.pow(base, exp))),
+            sqrt: (x) => withNativeMath(() => Number(preciseMath.sqrt(x))),
+            cbrt: (x) => withNativeMath(() => Number(preciseMath.cbrt(x))),
+            log: (x) => withNativeMath(() => Number(preciseMath.log(x))),
+            log10: (x) => withNativeMath(() => Number(preciseMath.log10(x))),
+            log2: (x) => withNativeMath(() => Number(preciseMath.log2(x))),
+            exp: (x) => withNativeMath(() => Number(preciseMath.exp(x))),
+            sin: (x) => withNativeMath(() => Number(preciseMath.sin(x))),
+            cos: (x) => withNativeMath(() => Number(preciseMath.cos(x))),
+            tan: (x) => withNativeMath(() => Number(preciseMath.tan(x))),
+            asin: (x) => withNativeMath(() => Number(preciseMath.asin(x))),
+            acos: (x) => withNativeMath(() => Number(preciseMath.acos(x))),
+            atan: (x) => withNativeMath(() => Number(preciseMath.atan(x))),
+            atan2: (y, x) => withNativeMath(() => Number(preciseMath.atan2(y, x))),
+            sinh: (x) => withNativeMath(() => Number(preciseMath.sinh(x))),
+            cosh: (x) => withNativeMath(() => Number(preciseMath.cosh(x))),
+            tanh: (x) => withNativeMath(() => Number(preciseMath.tanh(x))),
+            max: (...args) => withNativeMath(() => Number(preciseMath.max(...args))),
+            min: (...args) => withNativeMath(() => Number(preciseMath.min(...args))),
+            sign: (x) => withNativeMath(() => Number(preciseMath.sign(x))),
+            trunc: (x) => withNativeMath(() => Number(preciseMath.trunc(x))),
+            random: () => _nativeMath.random(),
+            PI: _nativeMath.PI,
+            E: _nativeMath.E,
+            LN2: _nativeMath.LN2,
+            LN10: _nativeMath.LN10,
+            LOG2E: _nativeMath.LOG2E,
+            LOG10E: _nativeMath.LOG10E,
+            SQRT1_2: _nativeMath.SQRT1_2,
+            SQRT2: _nativeMath.SQRT2
+        };
+        
+        // 替换全局 Math 对象
+        window.Math = highPrecisionMath;
+        
+        // 暴露高精度计算方法供特殊需求使用
+        window.preciseMath = preciseMath;
+        window.BigNumber = preciseMath.bignumber;
+        
+        // 高精度计算辅助函数：使用 math.eval 计算表达式字符串
+        window.evalExpr = (expr) => {
+            return withNativeMath(() => {
+                const result = preciseMath.evaluate(expr);
+                return Number(result);
+            });
+        };
+        
+        // 高精度 pow 函数
+        window.powHP = (base, exp) => evalExpr(`${base} ^ ${exp}`);
+        
+        // 高精度 floor 函数
+        window.floorHP = (x) => evalExpr(`floor(${x})`);
+        
+        // 高精度 max 函数
+        window.maxHP = (...args) => evalExpr(`max(${args.join(', ')})`);
+        
+        // 高精度 min 函数
+        window.minHP = (...args) => evalExpr(`min(${args.join(', ')})`);
+        
+        console.log('math.js 高精度数学库已加载，全局 Math 已替换');
+    </script>
+    <!-- 引入游戏主逻辑脚本 -->
+    <script src="game.js"></script>
+</body>
+</html>

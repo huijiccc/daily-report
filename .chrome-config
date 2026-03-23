@@ -1,0 +1,5 @@
+# Chrome 浏览器配置
+# 用于控制已登录的 Chrome 实例
+
+CHROME_PORT=9222
+CHROME_WS=ws://127.0.0.1:9222
